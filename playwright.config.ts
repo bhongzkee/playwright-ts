@@ -24,6 +24,7 @@ const config: PlaywrightTestConfig = {
     trace: 'retain-on-failure',    //for playwright trace viewer
     headless: true,
     screenshot: 'only-on-failure',
+    actionTimeout: 10000, // 10 seconds for each action
   
   },
 

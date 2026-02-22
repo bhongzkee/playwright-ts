@@ -27,13 +27,17 @@ export const test = base.extend<{
   },
 
   formsPage: async ({ page }, use) => {
-    await page.goto('/automation-practice-form');
+    await page.goto('/');
+    await page.getByRole('heading', { name: 'Forms' }).click();
+    await page.getByRole('link', { name: 'practice form' }).click();
     await use(new FormsPage(page));
   },
 
 
   selectMenuPage: async ({ page }, use) => {
-    await page.goto('/select-menu');
+    await page.goto('/');
+    await page.getByRole('heading', { name: 'Widgets' }).click();
+    await page.getByRole('link', { name: 'select menu' }).click();
     await use(new SelectMenuPage(page));
   },
 
