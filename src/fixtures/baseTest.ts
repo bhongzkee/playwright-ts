@@ -17,7 +17,9 @@ export const test = base.extend<{
   },
 
   webTablePage: async ({ page }, use) => {
-    await page.goto('/webtables');
+    await page.goto('/');
+    await page.getByRole('heading', { name: 'Elements' }).click();
+    await page.getByRole('link', { name: 'Web Tables' }).click();
     await use(new WebTablePage(page));
   },
 
