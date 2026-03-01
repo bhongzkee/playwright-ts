@@ -22,44 +22,32 @@ export class CommonUserActionsPage {
   * 4. Relative XPath (last resort)
  */
 async inputOnField(fieldName: string, textInput: string): Promise<void> {
-  await test.step(`Input On Field: ${fieldName} with Value: ${textInput}`, async () => {    
-    //Try role first
-    const roleLocator = this.page.getByRole('textbox', { name: fieldName, exact: true });
-    if ((await roleLocator.count()) > 0) {
-      await roleLocator.fill(textInput);
-      console.log(`The input field "${fieldName}" filled with value: ${textInput} using role locator`);
-      return;
+  await test.step(`Input On Field: ${fieldName} with Value: ${textInput}`, async () => {
+    type LocatorObj = {
+      desc: string;
+      getLocator: () => import('@playwright/test').Locator;
+    };
+
+    const locators: LocatorObj[] = [
+      { desc: 'role locator', getLocator: () => this.page.getByRole('textbox', { name: fieldName, exact: true }) },
+      { desc: 'label locator', getLocator: () => this.page.getByLabel(fieldName, { exact: true }) },
+      { desc: 'placeholder locator', getLocator: () => this.page.getByPlaceholder(fieldName, { exact: true }) },
+      { desc: 'XPath locator', getLocator: () => this.page.locator(CommonLocators.inputFieldLocator(fieldName)) }
+    ];
+
+    for (const { desc, getLocator } of locators) {
+      const locator = getLocator();
+      if ((await locator.count()) > 0) {
+        await locator.fill(textInput);
+        console.log(`The input field "${fieldName}" filled with value: ${textInput} using ${desc}`);
+        return;
+      }
     }
 
-    //Fallback to label
-    const labelLocator = this.page.getByLabel(fieldName, { exact: true });
-    if ((await labelLocator.count()) > 0) {
-      await labelLocator.fill(textInput);
-      console.log(`The input field "${fieldName}" filled with value: ${textInput} using label locator`);
-      return;
-    }
-
-    //Fallback to placeholder
-    const placeholderLocator = this.page.getByPlaceholder(fieldName, { exact: true });
-    if ((await placeholderLocator.count()) > 0) {
-      await placeholderLocator.fill(textInput);
-      console.log(`The input field "${fieldName}" filled with value: ${textInput} using placeholder locator`);
-      return;
-    }
-
-    //Last resort: relative XPath
-    const relativeXPathLocator = CommonLocators.inputFieldLocator(fieldName);
-    const xpathLocator = this.page.locator(relativeXPathLocator);
-    if ((await xpathLocator.count()) > 0) {
-      await xpathLocator.fill(textInput);
-      console.log(`The input field "${fieldName}" filled with value: ${textInput} using XPath locator - ${relativeXPathLocator}`);
-      return;
-    }
-
-    //None matched → throw clear error
-    throw new Error(`Input field "${fieldName}" not found using role, label, placeholder, or relative XPath.`);
+    throw new Error(
+      `Input field "${fieldName}" not found using role, label, placeholder, or XPath locator.`
+    );
   });
-
 }
   
 

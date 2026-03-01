@@ -1,14 +1,10 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "CommonJS",
+    "outDir": "./dist",      // where compiled JS goes
+    "rootDir": "./src",      // explicitly set source folder
     "strict": true,
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "outDir": "dist"
+    "module": "commonjs",
+    "target": "es6"
   },
-  "include": ["src", "tests", "pages", "helperUtils", "locators"],
-  "exclude": ["dist"]
+  "include": ["src/**/*"]
 }
