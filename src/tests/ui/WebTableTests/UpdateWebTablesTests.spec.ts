@@ -1,7 +1,9 @@
-import { test } from '../../../fixtures/baseTest';
+import { test, expect } from '../../../fixtures/baseTest';
 import type { CommonUserActionsPage } from '../../../pages/commonUserActionsPage';
 import type { WebTablePage } from '../../../pages/webTablePage';
 import type { DataGenerator } from '../../../helperUtils/dataGenerator';
+import { WebTableHelper } from '../../../helperUtils/WebTableHelper';
+
 
 
 
@@ -24,31 +26,33 @@ test.describe('Web Table Tests - Update Table Cell Values', () => {
   let webTablePage: WebTablePage;
   let testData: DataGenerator;
   let rowName: string;
+  let webTableHelper: WebTableHelper;
 
-  test.beforeEach(async ({ commonUserAction: fixtureCommon, webTablePage: fixtureTable, testData: fixtureData }) => {
+  test.beforeEach(async ({ page, commonUserAction: fixtureCommon, webTablePage: fixtureTable, testData: fixtureData }) => {
     commonUserAction = fixtureCommon;
     webTablePage = fixtureTable;
     testData = fixtureData;
     rowName = await webTablePage.getRandomRowName();  // Get a random existing row name from the table before each test
+    webTableHelper = new WebTableHelper(page); // Initialize WebTableHelper with the current page
   });
   
 
-  test('Table Cell First Name Should Be Updated', async () => {
-    await webTablePage.clickOnTableRowEditIcon(rowName);
+  test('Table Cell First Name Should Be Updated', async ({page}) => {
+    await webTablePage.clickOnTableRowActionIcon(rowName, 'Action', 'Edit');
     await commonUserAction.inputOnTextField('First Name', testData.randomString);
-    await commonUserAction.clickOnButton('Submit');
+    await commonUserAction.clickOnButton('Submit');  
     await webTablePage.verifyTableCellValue(testData.randomString, 'First Name', testData.randomString);
   });
 
   test('Table Cell Last Name Should Be Updated', async () => {
-    await webTablePage.clickOnTableRowEditIcon(rowName);
+    await webTablePage.clickOnTableRowActionIcon(rowName, 'Action', 'Edit');
     await commonUserAction.inputOnTextField('Last Name', testData.randomString);
     await commonUserAction.clickOnButton('Submit');
     await webTablePage.verifyTableCellValue(rowName, 'Last Name', testData.randomString);
   });
 
   test('Table Cell Email Should Be Updated', async () => {
-    await webTablePage.clickOnTableRowEditIcon(rowName);
+    await webTablePage.clickOnTableRowActionIcon(rowName, 'Action', 'Edit');
     await commonUserAction.inputOnTextField('Email', testData.email);
     await commonUserAction.clickOnButton('Submit');
     await webTablePage.verifyTableCellValue(rowName, 'Email', testData.email);
@@ -56,21 +60,21 @@ test.describe('Web Table Tests - Update Table Cell Values', () => {
   });
 
   test('Table Cell Department Should Be Updated', async () => {
-    await webTablePage.clickOnTableRowEditIcon(rowName);
+    await webTablePage.clickOnTableRowActionIcon(rowName, 'Action', 'Edit');
     await commonUserAction.inputOnTextField('Department', testData.randomString);
     await commonUserAction.clickOnButton('Submit');
     await webTablePage.verifyTableCellValue(rowName, 'Department', testData.randomString);
   });
 
   test('Table Cell Age Should Be Updated', async () => {
-    await webTablePage.clickOnTableRowEditIcon(rowName);
+    await webTablePage.clickOnTableRowActionIcon(rowName, 'Action', 'Edit');
     await commonUserAction.inputOnTextField('Age', testData.age);
     await commonUserAction.clickOnButton('Submit');
     await webTablePage.verifyTableCellValue(rowName, 'Age', testData.age);
   });
 
   test('Table Cell Salary Should Be Updated', async () => {
-    await webTablePage.clickOnTableRowEditIcon(rowName);
+    await webTablePage.clickOnTableRowActionIcon(rowName, 'Action', 'Edit');
     await commonUserAction.inputOnTextField('Salary', testData.salary);
     await commonUserAction.clickOnButton('Submit');
     await webTablePage.verifyTableCellValue(rowName, 'Salary', testData.salary);

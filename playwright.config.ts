@@ -22,9 +22,9 @@ const config: PlaywrightTestConfig = {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: process.env.BASE_URL || 'https://demoqa.com',
     trace: 'retain-on-failure',    //for playwright trace viewer
-    headless: true,
+    headless: false,
     screenshot: 'only-on-failure',
-    actionTimeout: 10000, // 10 seconds for each action
+    actionTimeout: 15000, // 10 seconds for each action
   
   },
 

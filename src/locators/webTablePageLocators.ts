@@ -19,7 +19,8 @@ export const WebTablePageLocators = {
    * @returns {string} XPath locator for the edit icon in the specified row.
    */
   webTableRowEditLocator: (itemRowName: string): string =>
-    `//div[@role="row"][contains(normalize-space(.), "${itemRowName.replace(/"/g, '\\"')}")]//span[contains(@id, "edit-record")]`,
+    // `//div[@role="row"][contains(normalize-space(.), "${itemRowName.replace(/"/g, '\\"')}")]//span[contains(@id, "edit-record")]`,
+    `//tr[contains(string(), "${itemRowName}")]//*[@title="Edit"]`,
 
   /**
    * Locator for all column headers.
@@ -29,7 +30,7 @@ export const WebTablePageLocators = {
    *
    * @returns {string} XPath locator for all column headers.
    */
-  webTableColumnHeaderLocator: (): string => '//div[@role="columnheader"]',
+  webTableColumnHeaderLocator: (): string => '//tr/th',
 
   /**
    * Locator for a specific cell in a row by row name and column index.
@@ -43,7 +44,8 @@ export const WebTablePageLocators = {
    * @returns {string} XPath locator for the specified cell.
    */
   webTableCellLocator: (rowName: string, columnIndex: number): string =>
-    `//div[@role="row"][contains(normalize-space(.), "${rowName}")]//div[@role="gridcell"][${columnIndex}]`,
+    // `//div[@role="row"][contains(normalize-space(.), "${rowName}")]//div[@role="gridcell"][${columnIndex}]`,
+    `//tr/td[${columnIndex}][contains(normalize-space(.), "${rowName}")]`,
 
   /**
    * Locator for all rows in the web table that have an edit icon.
@@ -54,7 +56,8 @@ export const WebTablePageLocators = {
    * @returns {string} XPath locator for all editable rows.
    */
   webTableRowsLocator: (): string =>
-    '//div[@class="rt-tr-group"][@role="rowgroup"][.//span[contains(@id, "edit-record")]]',
+    // '//div[@class="rt-tr-group"][@role="rowgroup"][.//span[contains(@id, "edit-record")]]',
+    '//tbody/tr',
 
   /**
    * Locator for the first cell (usually First Name) of all rows in the web table.
@@ -65,5 +68,6 @@ export const WebTablePageLocators = {
    * @returns {string} XPath locator for first cell in each editable row.
    */
   webTableRowFirstNameLocator: (): string =>
-    '(//div[@class="rt-tr-group"][@role="rowgroup"]/div[@role="row"][.//span[contains(@id, "edit-record")]]/div[@role="gridcell"][1])',
+    // '(//div[@class="rt-tr-group"][@role="rowgroup"]/div[@role="row"][.//span[contains(@id, "edit-record")]]/div[@role="gridcell"][1])',
+    '//tbody/tr[1]',
 };
