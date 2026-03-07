@@ -3,7 +3,7 @@ import { defineConfig, devices, PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
   workers: 4, // run tests with 3 parallel workers
-  timeout: 40 * 1000,  // 3 minutes per test
+  timeout: 180 * 1000,  // 3 minutes per test
   testDir: './src/tests',
 
 

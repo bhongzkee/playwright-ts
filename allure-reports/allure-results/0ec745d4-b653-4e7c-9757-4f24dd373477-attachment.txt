@@ -1,8 +1,0 @@
-The field "Enter first name" filled with text: 
-The field "Enter last name" filled with text: TestUserLastName
-The field "Enter phone number" filled with text: 0919123456789
-The optionn "Philippines" selected
-The field "Enter email" filled with text: mail@gmail.com
-The field "Password" filled with text: Pass123
-The button "Register" clicked
-Check Submitted Info Results: "Email" with value "mail@gmail.com"

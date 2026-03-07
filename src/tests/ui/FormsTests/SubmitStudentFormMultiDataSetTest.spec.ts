@@ -1,6 +1,6 @@
 import { test } from '../../../fixtures/baseTest';
-import { readCSVData } from '../../../helperUtils/csvUtils';
-const csvData = readCSVData('src/testFiles/studentData.csv');
+import { readCSVData } from '../../../utils/csvUtils';
+const csvData = readCSVData('src/test-data/studentData.csv');
 
 
 /**

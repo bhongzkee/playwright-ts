@@ -5,7 +5,7 @@ import { parse } from 'csv-parse/sync';
  * Reads data from a CSV file and returns it as an array of objects.
  *
  * Example:
- *   const data = readCSVData('src/testData/studentData.csv');
+ *   const data = readCSVData('src/test-data/studentData.csv');
  *   → [ { firstName: 'John', lastName: 'Doe', ... }, ... ]
  *
  * @param {string} filePath - The relative or absolute path to the CSV file.

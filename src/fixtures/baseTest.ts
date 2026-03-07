@@ -1,7 +1,7 @@
 import { test as base, expect } from '@playwright/test';
 import { CommonUserActionsPage } from '../pages/commonUserActionsPage';
 import { WebTablePage } from '../pages/webTablePage';
-import { DataGenerator } from '../helperUtils/dataGenerator';
+import { DataGenerator } from '../utils/dataGenerator';
 import { FormsPage } from '../pages/formsPage';
 import { SelectMenuPage } from '../pages/selectMenuPage';
 

@@ -1,6 +1,6 @@
 import { test, expect, Page } from '@playwright/test';
 import { WebTablePageLocators } from '../locators/webTablePageLocators';
-import { WebTableHelper } from '../helperUtils/WebTableHelper';
+import { WebTableHelper } from '../utils/WebTableHelper';
 
 
 export class WebTablePage {
