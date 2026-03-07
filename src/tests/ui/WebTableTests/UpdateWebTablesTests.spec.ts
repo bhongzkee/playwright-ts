@@ -2,7 +2,7 @@ import { test, expect } from '../../../fixtures/baseTest';
 import type { CommonUserActionsPage } from '../../../pages/commonUserActionsPage';
 import type { WebTablePage } from '../../../pages/webTablePage';
 import type { DataGenerator } from '../../../utils/dataGenerator';
-import { WebTableHelper } from '../../../utils/WebTableHelper';
+import { WebTableHelper } from '../../../utils/webTableHelper';
 
 
 
